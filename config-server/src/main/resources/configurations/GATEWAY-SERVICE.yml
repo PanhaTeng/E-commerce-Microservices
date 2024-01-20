@@ -1,0 +1,21 @@
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+server:
+  port: 8222
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: PRODUCT-SERVICE
+            uri: http://localhost:8091
+            predicates:
+              - Path=/api/v1/products/**
+          - id: ORDER-SERVICE
+            uri: http://localhost:8090
+            predicates:
+              - Path=/api/v1/orders/**

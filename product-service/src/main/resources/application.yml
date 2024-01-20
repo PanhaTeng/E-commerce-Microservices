@@ -1,0 +1,11 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: PRODUCT-SERVICE
+  config:
+    import: optional:configserver:http://localhost:8888
+
+application:
+  config:
+    order-url: http://localhost:8090/api/v1/orders
