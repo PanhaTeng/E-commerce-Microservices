@@ -4,6 +4,7 @@ import com.panha.productservice.models.Product;
 import com.panha.productservice.models.dto.ProductOutFace;
 import com.panha.productservice.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    @Autowired
     private  OrderClient orderClient;
     public Product save(Product product){
         return productRepository.save(product);

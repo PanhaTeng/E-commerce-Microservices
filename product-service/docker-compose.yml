@@ -1,0 +1,53 @@
+#version: '3.8'
+#
+#services:
+#  postgres:
+#    image: postgres:latest
+#    container_name: postgres
+#    environment:
+#      POSTGRES_DB: your_database_name
+#      POSTGRES_USER: your_database_user
+#      POSTGRES_PASSWORD: your_database_password
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - my_network
+#
+#  product-server:
+#    image: your-registry/your-product-server-image:latest
+#    container_name: product-server
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/your_database_name
+#      SPRING_DATASOURCE_USERNAME: your_database_user
+#      SPRING_DATASOURCE_PASSWORD: your_database_password
+#    depends_on:
+#      - postgres
+#    ports:
+#      - "8081:8081"
+#    networks:
+#      - my_network
+#
+#networks:
+#  my_network:
+
+
+version: '3.8'
+
+services:
+  order-service:
+    image: product-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: product-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgres://cdcpzcsr:Cao4BUWxEmAN2TSUQp6dMVGyK41ykYXW@tiny.db.elephantsql.com/cdcpzcsr
+      SPRING_DATASOURCE_USERNAME: cdcpzcsr
+      SPRING_DATASOURCE_PASSWORD: Cao4BUWxEmAN2TSUQp6dMVGyK41ykYXW
+    ports:
+      - "8091:8091"
+    networks:
+      - my_network
+
+networks:
+  my_network:

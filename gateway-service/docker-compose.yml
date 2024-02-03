@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  config-server:
+    container_name: gateway-service
+    image: gateway-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8222:8222"
+    restart: unless-stopped
