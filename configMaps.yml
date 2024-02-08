@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservices-configmap
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  SPRING_CONFIG_IMPORT: "configserver:http://config-server:8888/"
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://descoveryservice:8761/eureka"
+  CONFIGSERVER_APPLICATION_NAME: "configserver"
+  EUREKA_APPLICATION_NAME: "eurekaserver"
+  GATEWAY_APPLICATION_NAME: "gateway"
+  ORDER_APPLICATION_NAME: "orderservice"
+  PRODUCT_APPLICATION_NAME: "productservice"
+  KEYCLOAK_ADMIN: "admin"
+  KEYCLOAK_ADMIN_PASSWORD: "admin"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: "http://localhost:7080/realms/master/protocol/openid-connect/certs"

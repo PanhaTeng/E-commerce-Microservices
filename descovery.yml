@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: descoveryservice
+  labels:
+    app: descoveryservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: descoveryservice
+  template:
+    metadata:
+      labels:
+        app: descoveryservice
+    spec:
+      containers:
+      - name: descoveryservice
+        image: tengpanha1/discovery-service:latest
+        ports:
+        - containerPort: 8761
+        env:
+          - name: SPRING_APPLICATION_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: microservices-configmap
+                key: EUREKA_APPLICATION_NAME
+          - name: SPRING_CONFIG_IMPORT
+            valueFrom:
+              configMapKeyRef:
+                name: microservices-configmap
+                key: SPRING_CONFIG_IMPORT
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: descoveryservice
+  labels:
+    app: descoveryservice
+spec:
+  selector:
+    app: descoveryservice
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8761
+      targetPort: 8761
